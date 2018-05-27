@@ -1,3 +1,14 @@
+# Augmented Reality fork by [aornelas](https://github.com/aornelas)
+The intention of this fork is to create a mobile Augmented Reality implementation of UnityMol.
+This integration should allow the user to place 3D models from PDB entries over a nearby real-world surface using Augmented Reality with a smartphone.
+
+# Cardboard Integration fork by [jcarcamo](https://github.com/jcarcamo)
+The intention of this fork is to create an integration with Cardboard for UnityMol.
+This integration should include: Cardboard Camera and BT controller.
+Additional goal would be to create cardboard compatible menu based on the original menu.
+
+# Original README by [bam93](https://github.com/bam93)
+
 $Id: README 23 2014-12-09 21:37:11Z baaden $
 
 This is UnityMol/SVN revision $Rev: 676 aka 0.9.3 $.

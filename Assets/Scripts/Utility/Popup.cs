@@ -83,7 +83,7 @@ public class Popup {
         bool done = false;
         switch (Event.current.GetTypeForControl(controlID)) 
         {
-            case EventType.mouseDown:
+            case EventType.MouseDown:
                 if(!showList)
                 {
                 	if (position.Contains(Event.current.mousePosition)) 
@@ -99,7 +99,7 @@ public class Popup {
                 }
                 break;
                 
-            case EventType.mouseUp:
+            case EventType.MouseUp:
 //                if (showList) 
 //                {
 //                    done = true;

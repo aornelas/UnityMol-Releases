@@ -26,31 +26,31 @@
 /// modify and/or redistribute the software under the terms of the CeCILL-C
 /// license as circulated by CEA, CNRS and INRIA at the following URL:
 /// "http://www.cecill.info".
-/// 
-/// As a counterpart to the access to the source code and rights to copy, 
-/// modify and redistribute granted by the license, users are provided only 
-/// with a limited warranty and the software's author, the holder of the 
-/// economic rights, and the successive licensors have only limited 
+///
+/// As a counterpart to the access to the source code and rights to copy,
+/// modify and redistribute granted by the license, users are provided only
+/// with a limited warranty and the software's author, the holder of the
+/// economic rights, and the successive licensors have only limited
 /// liability.
 ///
-/// In this respect, the user's attention is drawn to the risks associated 
-/// with loading, using, modifying and/or developing or reproducing the 
-/// software by the user in light of its specific status of free software, 
-/// that may mean that it is complicated to manipulate, and that also 
-/// therefore means that it is reserved for developers and experienced 
-/// professionals having in-depth computer knowledge. Users are therefore 
-/// encouraged to load and test the software's suitability as regards their 
-/// requirements in conditions enabling the security of their systems and/or 
-/// data to be ensured and, more generally, to use and operate it in the 
+/// In this respect, the user's attention is drawn to the risks associated
+/// with loading, using, modifying and/or developing or reproducing the
+/// software by the user in light of its specific status of free software,
+/// that may mean that it is complicated to manipulate, and that also
+/// therefore means that it is reserved for developers and experienced
+/// professionals having in-depth computer knowledge. Users are therefore
+/// encouraged to load and test the software's suitability as regards their
+/// requirements in conditions enabling the security of their systems and/or
+/// data to be ensured and, more generally, to use and operate it in the
 /// same conditions as regards security.
 ///
-/// The fact that you are presently reading this means that you have had 
+/// The fact that you are presently reading this means that you have had
 /// knowledge of the CeCILL-C license and that you accept its terms.
 ///
 /// $Id: BondCubeStyle.cs 540 2014-06-05 13:23:54Z sebastien $
 ///
-/// References : 
-/// If you use this code, please cite the following reference : 	
+/// References :
+/// If you use this code, please cite the following reference :
 /// Z. Lv, A. Tek, F. Da Silva, C. Empereur-mot, M. Chavent and M. Baaden:
 /// "Game on, Science - how video game technology may help biologists tackle
 /// visualization challenges" (2013), PLoS ONE 8(3):e57990.
@@ -79,11 +79,11 @@ namespace Molecule.View.DisplayBond {
 		public List<int[]> bondEPList;
 
 		public static GameObject BondCubeParent = new GameObject("BondCubeParent");
-		
+
 		public BondCubeStyle() {
 			number=FunctionConfig.number;
 		}
-		
+
 		public void DisplayBonds() {
 			if(UIData.bondtype==UIData.BondType.cube) {
 				bondList=MoleculeModel.bondEPList;
@@ -93,7 +93,7 @@ namespace Molecule.View.DisplayBond {
 				else
 					bondEPList=MoleculeModel.bondEPList;
 				int Number=bondEPList.Count/number;
-				
+
 				Debug.Log("DisplayBonds??bondList.Count "  + bondList.Count);
 
 				for(int i=0;i<Number;i++)
@@ -101,7 +101,7 @@ namespace Molecule.View.DisplayBond {
 				GameObject cbManagerObj = GameObject.FindGameObjectWithTag("CubeBondManager");
 				CubeBondManager cbManager = cbManagerObj.GetComponent<CubeBondManager>();
 				cbManager.Init();
-				
+
 				// HERE COMES THE BONDMANAGER
 			}
 			else if(UIData.bondtype==UIData.BondType.hyperstick) {
@@ -117,7 +117,7 @@ namespace Molecule.View.DisplayBond {
 				GameObject hsManagerObj = GameObject.FindGameObjectWithTag("HStickManager");
 				HStickManager hsManager = hsManagerObj.GetComponent<HStickManager>();
 				hsManager.Init();
-				
+
 //				GameObject hbManagerObj = GameObject.FindGameObjectWithTag("HBallManager");
 //				HBallManager hbManager = hbManagerObj.GetComponent<HBallManager>();
 //				hbManager.findBonds();
@@ -157,19 +157,18 @@ namespace Molecule.View.DisplayBond {
 				RuntimePlatform platform = Application.platform;
 				switch(platform) {
 					case RuntimePlatform.WindowsPlayer:
-					case RuntimePlatform.WindowsWebPlayer:
 					case RuntimePlatform.WindowsEditor:
 				Stick.GetComponent<Renderer>().material.shader=Shader.Find("FvNano/Stick HyperBalls 2 OpenGL");
 						break;
 					default :
 						Stick.GetComponent<Renderer>().material.shader=Shader.Find("FvNano/Stick HyperBalls 2 OpenGL");
-						break;				
+						break;
 				}
 				StickUpdate comp = Stick.AddComponent<StickUpdate>();
 				//Debug.Log("BOND : " + atomsIds[0] + " - " + atomsIds[1]);
 				//comp.atompointer1=(GameObject)MoleculeModel.atoms[atomsIds[0]];
 				//comp.atompointer2=(GameObject)MoleculeModel.atoms[atomsIds[1]];
-				
+
 				if(UI.UIData.atomtype == UI.UIData.AtomType.particleball){
 					comp.atompointer1=(GameObject)MoleculeModel.atoms[atomsIds[0]];
 					comp.atompointer2=(GameObject)MoleculeModel.atoms[atomsIds[1]];
@@ -179,8 +178,8 @@ namespace Molecule.View.DisplayBond {
 					comp.atompointer1 = manager.GetBall(Molecule.Model.MoleculeModel.atoms.Count - 1 - atomsIds[0]);
 					comp.atompointer2 = manager.GetBall(Molecule.Model.MoleculeModel.atoms.Count - 1 - atomsIds[1]);
 				}
-			
-				comp.enabled = true;										
+
+				comp.enabled = true;
 				Stick.GetComponent<Renderer>().material.SetFloat("_Shrink", StickUpdate.shrink);
 				Stick.tag="Club";
 				Stick.GetComponent<Collider>().enabled = false;
@@ -206,7 +205,7 @@ namespace Molecule.View.DisplayBond {
 			BondCubeUpdate comp = o.AddComponent<BondCubeUpdate>();
 			//comp.atompointer1=(GameObject)MoleculeModel.atoms[atomsIds[0]];
 			//comp.atompointer2=(GameObject)MoleculeModel.atoms[atomsIds[1]];
-			
+
 			if(UI.UIData.atomtype == UI.UIData.AtomType.particleball){
 				comp.atompointer1=(GameObject)MoleculeModel.atoms[atomsIds[0]];
 				comp.atompointer2=(GameObject)MoleculeModel.atoms[atomsIds[1]];
@@ -216,14 +215,14 @@ namespace Molecule.View.DisplayBond {
 				comp.atompointer1 = manager.GetBall(Molecule.Model.MoleculeModel.atoms.Count - 1 - atomsIds[0]);
 				comp.atompointer2 = manager.GetBall(Molecule.Model.MoleculeModel.atoms.Count - 1 - atomsIds[1]);
 			}
-			
+
 //			o.transform.position = location[0];
 //			o.transform.LookAt(location[1]);
 			o.transform.localScale=new Vector3(0.1f,0.1f,1f);
 			o.tag="Club";
 			o.transform.parent = BondCubeParent.transform;
 		}
-		
+
 
 		//Billboard hypersticks
 		private void CreateBBCylinderByShader(int i) {
@@ -232,35 +231,34 @@ namespace Molecule.View.DisplayBond {
 				Stick=Clip4HyperStick.CreateClip();
 			else
 				Stick=GameObject.CreatePrimitive(PrimitiveType.Plane);
-						
-			int[] atomsIds = bondEPList[i] as int[];	
-					
+
+			int[] atomsIds = bondEPList[i] as int[];
+
 			Stick.transform.Rotate(new Vector3(0,-180,0));
 			Stick.AddComponent<CameraFacingBillboard>();
 			Stick.GetComponent<CameraFacingBillboard>().cameraToLookAt = GameObject.Find("Camera").GetComponent<Camera>();
 			RuntimePlatform platform = Application.platform;
 			switch(platform) {
 				case RuntimePlatform.WindowsPlayer:
-				case RuntimePlatform.WindowsWebPlayer:
 				case RuntimePlatform.WindowsEditor:
 				Stick.GetComponent<Renderer>().material.shader=Shader.Find("FvNano/Stick HyperBalls 2 OpenGL");
 					break;
 				default :
 					Stick.GetComponent<Renderer>().material.shader=Shader.Find("FvNano/Stick HyperBalls 2 OpenGL");
-					break;				
+					break;
 			}
 			Stick.AddComponent<StickUpdate>();
-			
+
 			StickUpdate comp = Stick.GetComponent<StickUpdate>();
 			comp.atompointer1=(GameObject)MoleculeModel.atoms[atomsIds[0]];
 			comp.atompointer2=(GameObject)MoleculeModel.atoms[atomsIds[1]];
-			
-			comp.enabled = true;										
+
+			comp.enabled = true;
 			Stick.GetComponent<Renderer>().material.SetFloat("_Shrink", 0.01f);
 			Stick.tag="Club";
 			Stick.transform.parent = BondCubeParent.transform;
 		}
-		
+
 	}
 
 }

@@ -26,31 +26,31 @@
 /// modify and/or redistribute the software under the terms of the CeCILL-C
 /// license as circulated by CEA, CNRS and INRIA at the following URL:
 /// "http://www.cecill.info".
-/// 
-/// As a counterpart to the access to the source code and rights to copy, 
-/// modify and redistribute granted by the license, users are provided only 
-/// with a limited warranty and the software's author, the holder of the 
-/// economic rights, and the successive licensors have only limited 
+///
+/// As a counterpart to the access to the source code and rights to copy,
+/// modify and redistribute granted by the license, users are provided only
+/// with a limited warranty and the software's author, the holder of the
+/// economic rights, and the successive licensors have only limited
 /// liability.
 ///
-/// In this respect, the user's attention is drawn to the risks associated 
-/// with loading, using, modifying and/or developing or reproducing the 
-/// software by the user in light of its specific status of free software, 
-/// that may mean that it is complicated to manipulate, and that also 
-/// therefore means that it is reserved for developers and experienced 
-/// professionals having in-depth computer knowledge. Users are therefore 
-/// encouraged to load and test the software's suitability as regards their 
-/// requirements in conditions enabling the security of their systems and/or 
-/// data to be ensured and, more generally, to use and operate it in the 
+/// In this respect, the user's attention is drawn to the risks associated
+/// with loading, using, modifying and/or developing or reproducing the
+/// software by the user in light of its specific status of free software,
+/// that may mean that it is complicated to manipulate, and that also
+/// therefore means that it is reserved for developers and experienced
+/// professionals having in-depth computer knowledge. Users are therefore
+/// encouraged to load and test the software's suitability as regards their
+/// requirements in conditions enabling the security of their systems and/or
+/// data to be ensured and, more generally, to use and operate it in the
 /// same conditions as regards security.
 ///
-/// The fact that you are presently reading this means that you have had 
+/// The fact that you are presently reading this means that you have had
 /// knowledge of the CeCILL-C license and that you accept its terms.
 ///
 /// $Id: BondParticleStyle.cs 329 2013-08-06 13:47:40Z erwan $
 ///
-/// References : 
-/// If you use this code, please cite the following reference : 	
+/// References :
+/// If you use this code, please cite the following reference :
 /// Z. Lv, A. Tek, F. Da Silva, C. Empereur-mot, M. Chavent and M. Baaden:
 /// "Game on, Science - how video game technology may help biologists tackle
 /// visualization challenges" (2013), PLoS ONE 8(3):e57990.
@@ -66,7 +66,7 @@
 
 namespace Molecule.View.DisplayBond
 {
-	
+
 	using UnityEngine;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -80,8 +80,8 @@ namespace Molecule.View.DisplayBond
 		public int number=1;
 		public List<int[]> bondList=new List<int[]>();
 		public List<int[]> bondEPList=new List<int[]>();
-		
-		Particle[] p = new Particle[MoleculeModel.bondEPList.Count/FunctionConfig.number];
+
+		ParticleSystem.Particle[] p = new ParticleSystem.Particle[MoleculeModel.bondEPList.Count/FunctionConfig.number];
 		int bondindex=0;
 
 		public BondParticleStyle()
@@ -89,7 +89,7 @@ namespace Molecule.View.DisplayBond
 			number=FunctionConfig.number;
 		}
 
-		
+
 		public void DisplayBonds()
 		{
 				bondEPList=MoleculeModel.bondEPList;
@@ -114,20 +114,20 @@ namespace Molecule.View.DisplayBond
 						particleeffect.SpawnEffect ();
 						Debug.Log("the length of p ="+p.Length);
 
-								
-			
-			
+
+
+
 		}
-		
+
 		private void CreateCylinderByParticle(int start, int end) // Apparently unused function. Would make ParticleSticks.
 		{
-			
-			
+
+
 			GameObject ParticleManager=GameObject.Find("ParticleStickManager");
 //			ParticleEffect particleeffect=ParticleManager.transform.GetComponent<ParticleEffect>();
 			ParticleManager.transform.GetComponent<ParticleEffect>();
 			for(int i=start;i<end;i++)
-			{	
+			{
 //				Vector3[]  location=bondEPList[i] as Vector3[];
 				Vector3[] location = new Vector3[bondEPList.Count];
 				for(int j=0; i<(bondEPList.Count); j++)
@@ -137,10 +137,10 @@ namespace Molecule.View.DisplayBond
 												(bondEPList[i][2])	);
 					location[i] = v;
 				}
-				
+
 				Vector3 atom0position=new Vector3();
 				Vector3 atom1position=new Vector3();
-				Vector3 atomtype=new Vector3();		
+				Vector3 atomtype=new Vector3();
 				atom0position=location[0];
 				atom1position=location[1];
 				atomtype=location[2];
@@ -152,10 +152,10 @@ namespace Molecule.View.DisplayBond
 				float atomradius1=1f;
 //				int oratom1number=0;
 //				int oratom2number=0;
-			
+
 //				int atom1number;
 //				int atom2number;
-			
+
 				if(UI.GUIDisplay.file_extension=="xgmml")
 				{
 //					oratom1number=(int)atomtype.x;
@@ -166,7 +166,7 @@ namespace Molecule.View.DisplayBond
 //					oratom1number=(int)atomtype.z/100;
 //					oratom2number=(int)atomtype.z-oratom1number*99;
 				}
-				
+
 				if(UIData.isSphereToCube==true)
 				{
 //					atom1number=AtomCubeStyle.atomOrderList.IndexOf(oratom1number);
@@ -188,40 +188,40 @@ namespace Molecule.View.DisplayBond
 //									atom0type="N";
 //									atom0color= (MoleculeModel.nitrogenColor);
 									atomradius0=1.55f;
-									
+
 									break;
 								case 3:
 //									atom0type="O";
 //									atom0color= (MoleculeModel.oxygenColor);
 									atomradius0=1.52f;
-									
+
 									break;
 								case 4:
 //									atom0type="S";
 //									atom0color= (MoleculeModel.sulphurColor);
 									atomradius0=2.27f;
-									
+
 									break;
 								case 5:
 //									atom0type="P";
 //									atom0color= (MoleculeModel.phosphorusColor);
 									atomradius0=1.18f;
-									
+
 									break;
 								case 6:
 //									atom0type="H";
 //									atom0color= (MoleculeModel.hydrogenColor);
 									atomradius0=1.2f;
-									
+
 									break;
 								case 7:
 //									atom0type="X";
 //									atom0color= (MoleculeModel.unknownColor);
 									atomradius0=1.0f;
-									
-									break;						
+
+									break;
 					}
-			
+
 					switch((int)atomtype.y)
 					{
 								case 1:
@@ -234,55 +234,55 @@ namespace Molecule.View.DisplayBond
 //									atom1type="N";
 //									atom1color= (MoleculeModel.nitrogenColor);
 									atomradius1=1.55f;
-									
+
 									break;
 								case 3:
 //									atom1type="O";
 //									atom1color= (MoleculeModel.oxygenColor);
 									atomradius1=1.52f;
-									
+
 									break;
 								case 4:
 //									atom1type="S";
 //									atom1color= (MoleculeModel.sulphurColor);
 									atomradius1=2.27f;
-									
+
 									break;
 								case 5:
 //									atom1type="P";
 //									atom1color= (MoleculeModel.phosphorusColor);
 									atomradius1=1.18f;
-									
+
 									break;
 								case 6:
 //									atom1type="H";
 //									atom1color= (MoleculeModel.hydrogenColor);
 									atomradius1=1.2f;
-									
+
 									break;
 								case 7:
 //									atom1type="X";
 //									atom1color= (MoleculeModel.unknownColor);
 									atomradius1=1.0f;
-									
-									break;						
+
+									break;
 					}
-			
+
 					Quaternion q=Quaternion.identity;
 					Vector3 v3=new Vector3();
 					v3.x=location[1].x*180f/3.1416f;
 					v3.y=location[1].y*180f/3.1416f;
 					v3.z=location[1].z*180f/3.1416f;
-					q.eulerAngles=v3;					
+					q.eulerAngles=v3;
 					p[bondindex+start].position=(atom0position+atom1position)/2;
 					p[bondindex+start].size=(float)(atomradius0+atomradius1)/2;
 					p[bondindex+start].color=Color.yellow;
-					p[bondindex+start].energy=1000;
-					
+					p[bondindex+start].startLifetime=1000;
+
 			}
 
 		}
-		
+
 	}
 
 }

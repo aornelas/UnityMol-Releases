@@ -28,7 +28,7 @@ public class TransparentFocus : MonoBehaviour {
 	public ParticleSystem pSystem;
 	public static int pNumber;
 	public GameObject parentObj;
-	private Particle[] sourceParticles;
+	private ParticleSystem.Particle[] sourceParticles;
 	private ParticleSystem.Particle[] particles;
 	private RaycastHit[] backupHits;
 	private bool hitting = true;
